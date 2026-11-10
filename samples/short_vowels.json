@@ -1,0 +1,47 @@
+{
+  "format": "phoneme-annotation-v1",
+  "sampleRate": 22050,
+  "duration": 1.6,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 0.28,
+      "phoneme": "sil"
+    },
+    {
+      "start": 0.28,
+      "end": 0.36,
+      "phoneme": "b"
+    },
+    {
+      "start": 0.36,
+      "end": 0.56,
+      "phoneme": "a"
+    },
+    {
+      "start": 0.62,
+      "end": 0.7,
+      "phoneme": "b"
+    },
+    {
+      "start": 0.7,
+      "end": 0.88,
+      "phoneme": "i"
+    },
+    {
+      "start": 0.94,
+      "end": 1.02,
+      "phoneme": "b"
+    },
+    {
+      "start": 1.02,
+      "end": 1.22,
+      "phoneme": "u"
+    },
+    {
+      "start": 1.22,
+      "end": 1.6,
+      "phoneme": "sil"
+    }
+  ]
+}

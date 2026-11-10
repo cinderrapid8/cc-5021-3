@@ -1,0 +1,77 @@
+{
+  "format": "phoneme-annotation-v1",
+  "sampleRate": 22050,
+  "duration": 1.4,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 0.15,
+      "phoneme": "sil"
+    },
+    {
+      "start": 0.15,
+      "end": 0.205,
+      "phoneme": "b"
+    },
+    {
+      "start": 0.205,
+      "end": 0.305,
+      "phoneme": "a"
+    },
+    {
+      "start": 0.305,
+      "end": 0.36,
+      "phoneme": "d"
+    },
+    {
+      "start": 0.36,
+      "end": 0.455,
+      "phoneme": "a"
+    },
+    {
+      "start": 0.455,
+      "end": 0.515,
+      "phoneme": "g"
+    },
+    {
+      "start": 0.515,
+      "end": 0.62,
+      "phoneme": "a"
+    },
+    {
+      "start": 0.62,
+      "end": 0.675,
+      "phoneme": "b"
+    },
+    {
+      "start": 0.675,
+      "end": 0.77,
+      "phoneme": "a"
+    },
+    {
+      "start": 0.77,
+      "end": 0.825,
+      "phoneme": "d"
+    },
+    {
+      "start": 0.825,
+      "end": 0.92,
+      "phoneme": "a"
+    },
+    {
+      "start": 0.92,
+      "end": 0.98,
+      "phoneme": "g"
+    },
+    {
+      "start": 0.98,
+      "end": 1.085,
+      "phoneme": "a"
+    },
+    {
+      "start": 1.085,
+      "end": 1.4,
+      "phoneme": "sil"
+    }
+  ]
+}

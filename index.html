@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>音素驱动口型动画工具（形态权重 / 确定性时间采样）</title>
+<style>
+  :root {
+    --bg: #0b1220; --panel: #131c2e; --panel2: #1a2540;
+    --line: #24314d; --text: #e6edf7; --muted: #93a1b5;
+    --accent: #5aa9e6; --ok: #06d6a0; --warn: #ffd166; --err: #ef476f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 13px/1.5 "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  header { padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--panel); }
+  header h1 { margin: 0 0 4px; font-size: 17px; }
+  header p { margin: 0; color: var(--muted); font-size: 12px; }
+  .layout { display: grid; grid-template-columns: 300px 1fr 340px; gap: 12px; padding: 12px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+  .panel h2 { margin: 0 0 8px; font-size: 13px; color: var(--accent); text-transform: uppercase; letter-spacing: .5px; }
+  label { display: block; color: var(--muted); margin: 8px 0 3px; font-size: 12px; }
+  select, input, textarea, button {
+    width: 100%; background: var(--panel2); color: var(--text);
+    border: 1px solid var(--line); border-radius: 5px; padding: 6px 8px; font-size: 12px;
+  }
+  textarea { font-family: monospace; resize: vertical; }
+  button { cursor: pointer; width: auto; padding: 6px 12px; }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: #1d4e7c; border-color: var(--accent); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .row > * { flex: 1; min-width: 80px; }
+  .row button { flex: 0 0 auto; }
+  .stage { position: relative; background: var(--panel2); border-radius: 6px; overflow: hidden; }
+  canvas { display: block; width: 100%; }
+  .time-readout { font-family: monospace; color: var(--ok); }
+  .issues { max-height: 220px; overflow: auto; font-size: 11.5px; }
+  .issue { padding: 4px 6px; border-radius: 4px; margin-bottom: 4px; border-left: 3px solid; }
+  .issue.error { background: rgba(239,71,111,.12); border-color: var(--err); }
+  .issue.warn { background: rgba(255,209,102,.10); border-color: var(--warn); }
+  .issue.info { background: rgba(6,214,160,.08); border-color: var(--ok); }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th, td { border: 1px solid var(--line); padding: 3px 5px; text-align: center; }
+  th { color: var(--muted); font-weight: 600; }
+  td input { padding: 2px 4px; text-align: center; }
+  .matrix-wrap { max-height: 320px; overflow: auto; }
+  .audit-pass { color: var(--ok); font-weight: 700; }
+  .audit-fail { color: var(--err); font-weight: 700; }
+  .morph-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .chip { font-size: 11px; padding: 2px 7px; border-radius: 10px; background: var(--panel2); border: 1px solid var(--line); font-family: monospace; }
+  .chip.sub { border-color: var(--warn); color: var(--warn); }
+  .chip.drop { border-color: var(--err); color: var(--err); }
+  .hint { color: var(--muted); font-size: 11px; margin-top: 6px; }
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 9px; font-size: 11px; margin-left: 6px; }
+  .badge.err { background: rgba(239,71,111,.2); color: var(--err); }
+  .badge.warn { background: rgba(255,209,102,.18); color: var(--warn); }
+  .badge.info { background: rgba(6,214,160,.15); color: var(--ok); }
+  details summary { cursor: pointer; color: var(--muted); margin: 4px 0; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; font-size: 12px; }
+  .stat-grid b { color: var(--accent); }
+  @media (max-width: 1100px) { .layout { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>音素驱动口型动画工具</h1>
+  <p>输入自制语音 + 音素时间标注，按“音素→口型→抽象形态→模型实际 morph”链路生成形态权重曲线。
+     口型由媒体时钟时间求值，与音量解耦；支持过渡、闭口辅音保持与长停顿处理。</p>
+</header>
+
+<div class="layout">
+  <!-- 左列：输入与控制 -->
+  <div class="col">
+    <section class="panel">
+      <h2>1. 输入资产</h2>
+      <label>内置演示样例（浏览器内确定性合成音频）</label>
+      <select id="sampleSelect"></select>
+      <div class="row" style="margin-top:6px">
+        <button id="loadSampleBtn" class="primary">载入样例</button>
+      </div>
+      <label>自制语音文件（wav/mp3/m4a/ogg…）</label>
+      <input type="file" id="audioFile" accept="audio/*" />
+      <label>音素时间标注（JSON 或文本：start end phoneme）</label>
+      <input type="file" id="annotFile" accept=".json,.txt,.lab,.TextGrid" />
+      <div class="hint">JSON 形如 <code>[{"start":0.28,"end":0.36,"phoneme":"b"}, …]</code>；文本每行三个字段，<code>#</code> 为注释。</div>
+      <details><summary>或直接粘贴标注文本</summary>
+        <textarea id="annotPaste" rows="6" placeholder="0.000 0.280 sil&#10;0.280 0.360 b&#10;0.360 0.560 a"></textarea>
+        <div class="row" style="margin-top:6px"><button id="pasteBtn">解析粘贴标注</button></div>
+      </details>
+    </section>
+
+    <section class="panel">
+      <h2>2. 模型与播放</h2>
+      <label>模型清单（实际 morph 名称）</label>
+      <select id="modelSelect"></select>
+      <div id="morphChips" class="morph-chips"></div>
+      <label>播放速率（变速不累积偏差）</label>
+      <div class="row">
+        <input type="range" id="rateRange" min="0.25" max="2" step="0.05" value="1" />
+        <span id="rateVal" style="flex:0 0 44px" class="time-readout">1.00x</span>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="playBtn" class="primary">播放</button>
+        <button id="pauseBtn">暂停</button>
+        <button id="restartBtn">回到开头</button>
+      </div>
+      <div class="hint">当前媒体时间：<span id="clockTime" class="time-readout">0.000s</span>
+        ｜时长 <span id="durationTime" class="time-readout">0.000s</span></div>
+      <div class="hint">求值依据是媒体元素 currentTime；动画帧只取时间重绘，不累计帧数。</div>
+    </section>
+
+    <section class="panel">
+      <h2>3. 过渡参数</h2>
+      <label>进入斜坡 attack（秒）<span id="attackVal"></span></label>
+      <input type="range" id="attackRange" min="0.01" max="0.12" step="0.005" value="0.045" />
+      <label>离开斜坡 release（秒）<span id="releaseVal"></span></label>
+      <input type="range" id="releaseRange" min="0.01" max="0.15" step="0.005" value="0.060" />
+      <label>闭口辅音最小保持 closureHold（秒）<span id="holdVal"></span></label>
+      <input type="range" id="holdRange" min="0.02" max="0.15" step="0.005" value="0.055" />
+      <label>长停顿阈值（秒）<span id="pauseVal"></span></label>
+      <input type="range" id="pauseRange" min="0.1" max="1" step="0.05" value="0.25" />
+    </section>
+
+    <section class="panel">
+      <h2>4. 导出与确定性采样</h2>
+      <label>采样步长 dt（秒）</label>
+      <div class="row">
+        <input type="number" id="dtInput" value="0.01" min="0.001" max="0.1" step="0.001" />
+        <button id="recomputeBtn" class="primary">重算曲线</button>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="exportWeightsBtn">导出权重 JSON</button>
+        <button id="exportCsvBtn">导出权重 CSV</button>
+        <button id="exportReportBtn">导出误差/问题记录</button>
+      </div>
+      <div class="hint">网格采样点为 tₖ = round(k·dt)，与播放状态无关、完全可复现。</div>
+    </section>
+  </div>
+
+  <!-- 中列：舞台与波形 -->
+  <div class="col">
+    <section class="panel">
+      <h2>变形人脸（程序化 morph，非预录视频）</h2>
+      <div class="stage">
+        <canvas id="faceCanvas" width="640" height="380"></canvas>
+      </div>
+      <div class="stage" style="margin-top:10px">
+        <canvas id="barCanvas" width="640" height="110"></canvas>
+      </div>
+      <div class="hint">当前 viseme：<span id="curViseme" class="time-readout">—</span>
+        ｜当前音素：<span id="curPhoneme" class="time-readout">—</span></div>
+    </section>
+
+    <section class="panel">
+      <h2>波形 × 音素边界（点击/拖动定位）</h2>
+      <div class="stage">
+        <canvas id="waveCanvas" width="900" height="180"></canvas>
+      </div>
+      <div class="hint">红点为闭口辅音的强制闭合时刻；灰色区域为静默段。</div>
+    </section>
+
+    <section class="panel">
+      <h2>形态权重曲线（全时间线）</h2>
+      <div class="stage">
+        <canvas id="curveCanvas" width="900" height="240"></canvas>
+      </div>
+    </section>
+  </div>
+
+  <!-- 右列：映射编辑、核对与报告 -->
+  <div class="col">
+    <section class="panel">
+      <h2>5. 音素 → 口型映射（可改后立即重算）</h2>
+      <div class="row">
+        <input id="phonemeFilter" placeholder="过滤音素，如 b / a / sil" />
+      </div>
+      <div class="matrix-wrap" style="margin-top:6px">
+        <table id="phonemeMapTable">
+          <thead><tr><th>音素</th><th>口型 viseme</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>6. 口型 → 抽象形态权重（受范围约束）</h2>
+      <div class="matrix-wrap">
+        <table id="visemeTable">
+          <thead id="visemeHead"></thead>
+          <tbody id="visemeBody"></tbody>
+        </table>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="resetMapBtn">恢复默认映射</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>7. 关键闭合时刻核对</h2>
+      <div class="matrix-wrap">
+        <table id="auditTable">
+          <thead><tr><th>音素</th><th>时刻(s)</th><th>期望</th><th>实际</th><th>结果</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="stat-grid" style="margin-top:8px">
+        <span>音素数 <b id="statPhonemes">0</b></span>
+        <span>闭口事件 <b id="statClosures">0</b></span>
+        <span>强制保持 <b id="statEnforced">0</b></span>
+        <span>长停顿 <b id="statPauses">0</b></span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>8. 诊断 / 缺失形态报告
+        <span class="badge err" id="errBadge">0</span>
+        <span class="badge warn" id="warnBadge">0</span>
+        <span class="badge info" id="infoBadge">0</span>
+      </h2>
+      <div id="issueList" class="issues"></div>
+    </section>
+  </div>
+</div>
+
+<audio id="audioEl" preload="auto"></audio>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
