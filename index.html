@@ -61,6 +61,8 @@
   details summary { cursor: pointer; color: var(--muted); margin: 4px 0; }
   .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; font-size: 12px; }
   .stat-grid b { color: var(--accent); }
+  .fusion-params { margin-top: 8px; }
+  .fusion-params input[type=range] { margin-bottom: 6px; }
   @media (max-width: 1100px) { .layout { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -97,6 +99,10 @@
       <label>模型清单（实际 morph 名称）</label>
       <select id="modelSelect"></select>
       <div id="morphChips" class="morph-chips"></div>
+      <label style="margin-top:10px">口型融合策略（可切换，立即重算驱动）</label>
+      <select id="fusionSelect"></select>
+      <div id="fusionParams" class="fusion-params"></div>
+      <div class="hint">center=音素中心距离加权；window=显式共发音窗口（lead/lag 自适应、闭口对齐释放点）；envelope=既有固定斜坡基线。取舍数据见 experiments/fusion。</div>
       <label>播放速率（变速不累积偏差）</label>
       <div class="row">
         <input type="range" id="rateRange" min="0.25" max="2" step="0.05" value="1" />

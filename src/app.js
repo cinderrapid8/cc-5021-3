@@ -6,6 +6,7 @@ import {
   parseAnnotationJSON, parseAnnotationText, normalizeSegments,
   buildTimeline, sampleAt, sampleGrid, closureAudit, buildExportPayload,
 } from './engine.js';
+import { FUSION_STRATEGIES, FUSION_DEFAULT_PARAMS } from './fusion/index.js';
 import { MediaClock } from './clock.js';
 import { synthSampleBlob, computePeaks } from './synth.js';
 import { drawFace, drawChannelBars } from './face.js';
@@ -24,6 +25,11 @@ const state = {
   audioDuration: 0,
   sampleBlobUrl: null,
   dt: DEFAULT_SAMPLE_DT,
+  fusionStrategy: 'envelope',
+  fusionParams: {
+    center: { ...FUSION_DEFAULT_PARAMS.center },
+    window: { ...FUSION_DEFAULT_PARAMS.window },
+  },
 };
 
 const $ = (id) => document.getElementById(id);
@@ -53,6 +59,60 @@ function initSelects() {
     opt.textContent = m.label;
     ms.appendChild(opt);
   }
+  const fs = $('fusionSelect');
+  for (const [id, strat] of Object.entries(FUSION_STRATEGIES)) {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = strat.label;
+    fs.appendChild(opt);
+  }
+}
+
+// center / window 策略的可调参数（envelope 复用第 3 节的过渡滑块，无额外参数）
+const FUSION_PARAM_FIELDS = {
+  center: [
+    { key: 'radiusScale', label: '半径缩放 radiusScale', min: 0.4, max: 2, step: 0.05 },
+    { key: 'radiusPadding', label: '邻域填充 radiusPadding(s)', min: 0, max: 0.12, step: 0.005 },
+    { key: 'minRadius', label: '最小半径 minRadius(s)', min: 0.02, max: 0.15, step: 0.005 },
+  ],
+  window: [
+    { key: 'minLead', label: '最小前向共发音 minLead(s)', min: 0, max: 0.1, step: 0.005 },
+    { key: 'minLag', label: '最小后向共发音 minLag(s)', min: 0, max: 0.12, step: 0.005 },
+    { key: 'leadScale', label: '间隙→lead 比例', min: 0, max: 1.5, step: 0.05 },
+    { key: 'lagScale', label: '间隙→lag 比例', min: 0, max: 1.5, step: 0.05 },
+  ],
+};
+
+function renderFusionParams() {
+  const wrap = $('fusionParams');
+  wrap.innerHTML = '';
+  const fields = FUSION_PARAM_FIELDS[state.fusionStrategy];
+  if (!fields) {
+    wrap.innerHTML = '<div class="hint">该策略使用第 3 节的 attack/release/closureHold 参数。</div>';
+    return;
+  }
+  for (const f of fields) {
+    const val = state.fusionParams[state.fusionStrategy][f.key];
+    const label = document.createElement('label');
+    label.textContent = `${f.label}：`;
+    const valSpan = document.createElement('span');
+    valSpan.className = 'time-readout';
+    valSpan.textContent = val;
+    label.appendChild(valSpan);
+    const input = document.createElement('input');
+    input.type = 'range';
+    input.min = f.min;
+    input.max = f.max;
+    input.step = f.step;
+    input.value = val;
+    input.addEventListener('input', () => {
+      const v = Number(input.value);
+      valSpan.textContent = v;
+      state.fusionParams[state.fusionStrategy][f.key] = v;
+      rebuildTimeline();
+    });
+    wrap.append(label, input);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -69,6 +129,7 @@ function rebuildTimeline() {
     visemeTargets: state.visemeTargets,
     transition: state.transition,
     model: state.model,
+    fusion: { strategy: state.fusionStrategy, params: state.fusionParams[state.fusionStrategy] || {} },
   });
   renderAll();
 }
@@ -413,6 +474,12 @@ function bindEvents() {
     rebuildTimeline();
   });
 
+  $('fusionSelect').addEventListener('change', () => {
+    state.fusionStrategy = $('fusionSelect').value;
+    renderFusionParams();
+    rebuildTimeline();
+  });
+
   $('playBtn').addEventListener('click', () => clock.play());
   $('pauseBtn').addEventListener('click', () => clock.pause());
   $('restartBtn').addEventListener('click', () => { clock.seek(0); drawTick(0); });
@@ -480,5 +547,6 @@ function bindEvents() {
 // ---------------------------------------------------------------------------
 initSelects();
 bindEvents();
+renderFusionParams();
 startLoop();
 loadSample(SAMPLE_SCHEDULES.short_vowels);

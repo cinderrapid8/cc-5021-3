@@ -4,8 +4,9 @@
   "description": "Phoneme-annotation-driven morph-target lip-sync tool with deterministic time sampling",
   "type": "module",
   "scripts": {
-    "test": "node --test test/engine.test.js test/smoke.test.js",
-    "gen-samples": "python3 tools/gen_samples.py"
+    "test": "node --test test/engine.test.js test/smoke.test.js test/fusion.test.js",
+    "gen-samples": "python3 tools/gen_samples.py",
+    "fusion-experiment": "node experiments/fusion/run_experiment.mjs"
   },
   "license": "MIT"
 }

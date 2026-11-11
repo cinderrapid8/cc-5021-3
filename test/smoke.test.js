@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { MODELS, SAMPLE_SCHEDULES, DEFAULT_PHONEME_MAP, ABSTRACT_CHANNELS } from '../src/config.js';
 import { buildTimeline, sampleAt, sampleGrid, buildExportPayload, closureAudit } from '../src/engine.js';
+import { FUSION_DEFAULT_PARAMS } from '../src/fusion/index.js';
 import { synthPcm, encodeWav, computePeaks } from '../src/synth.js';
 import { drawFace, drawChannelBars } from '../src/face.js';
 import { drawWaveform, timeFromPointer } from '../src/waveform.js';
@@ -94,5 +95,40 @@ test('网格采样与逐点采样在同一时刻结果一致（两条求值路�
     const one = sampleAt(tl, g.t);
     assert.deepEqual(one.morphs, g.morphs);
     assert.deepEqual(one.abstract, g.abstract);
+  }
+});
+
+test('生产接点：三个旧样例 × 三种融合策略，仿真时钟帧循环全程跑通且系数合法', () => {
+  for (const def of Object.values(SAMPLE_SCHEDULES)) {
+    for (const strategy of ['envelope', 'center', 'window']) {
+      const tl = buildTimeline(def.segments, {
+        model: MODELS.full,
+        fusion: { strategy, params: FUSION_DEFAULT_PARAMS[strategy] },
+      });
+      assert.equal(tl.fusion.strategy, strategy);
+      const sim = new SimulationClock();
+      sim.play(0);
+      const face = makeCanvas();
+      const bars = makeCanvas(640, 110);
+      const curves = makeCanvas(900, 240);
+      let frames = 0;
+      for (let wall = 0; wall <= tl.duration; wall += 1 / 60) {
+        const t = sim.update(wall);
+        const s = sampleAt(tl, t);
+        for (const ch of ABSTRACT_CHANNELS) {
+          assert.ok(s.abstract[ch] >= 0 && s.abstract[ch] <= 1,
+            `${def.id}/${strategy}/${ch}=${s.abstract[ch]} at ${t}`);
+        }
+        drawFace(face, s.abstract);
+        drawChannelBars(bars, s.abstract, ABSTRACT_CHANNELS);
+        drawCurves(curves, tl, t, 0.01);
+        frames += 1;
+      }
+      assert.ok(frames > 10);
+      // 导出载荷在新策略下仍结构完整
+      const payload = buildExportPayload(tl, 0.01);
+      assert.equal(payload.fusion.strategy, strategy);
+      assert.ok(payload.samples.length > 10);
+    }
   }
 });

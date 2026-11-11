@@ -1,0 +1,39 @@
+{
+  "format": "phoneme-annotation-v1",
+  "note": "自制共发音核对标注：极短闭口辅音与相邻爆破音/短元音的四个对照片段，时间为手工编排、确定性可复现",
+  "duration": 2.86,
+  "segments": [
+    {"start": 0.000, "end": 0.100, "phoneme": "sil"},
+
+    {"start": 0.100, "end": 0.125, "phoneme": "b"},
+    {"start": 0.125, "end": 0.180, "phoneme": "a"},
+    {"start": 0.180, "end": 0.205, "phoneme": "p"},
+    {"start": 0.205, "end": 0.260, "phoneme": "i"},
+    {"start": 0.260, "end": 0.360, "phoneme": "sil"},
+
+    {"start": 0.360, "end": 0.450, "phoneme": "a"},
+    {"start": 0.450, "end": 0.485, "phoneme": "b"},
+    {"start": 0.485, "end": 0.580, "phoneme": "a"},
+    {"start": 0.580, "end": 0.680, "phoneme": "sil"},
+
+    {"start": 0.680, "end": 0.720, "phoneme": "b"},
+    {"start": 0.720, "end": 0.790, "phoneme": "a"},
+    {"start": 0.790, "end": 0.830, "phoneme": "d"},
+    {"start": 0.830, "end": 0.900, "phoneme": "a"},
+    {"start": 0.900, "end": 0.940, "phoneme": "g"},
+    {"start": 0.940, "end": 1.020, "phoneme": "a"},
+    {"start": 1.020, "end": 1.120, "phoneme": "sil"},
+
+    {"start": 1.120, "end": 1.190, "phoneme": "i"},
+    {"start": 1.190, "end": 1.235, "phoneme": "b"},
+    {"start": 1.235, "end": 1.340, "phoneme": "u"},
+    {"start": 1.340, "end": 1.440, "phoneme": "sil"},
+
+    {"start": 1.440, "end": 1.530, "phoneme": "a"},
+    {"start": 1.530, "end": 1.620, "phoneme": "i"},
+    {"start": 1.620, "end": 1.720, "phoneme": "sil"},
+    {"start": 1.720, "end": 1.820, "phoneme": "b"},
+    {"start": 1.820, "end": 1.950, "phoneme": "a"},
+    {"start": 1.950, "end": 2.860, "phoneme": "sil"}
+  ]
+}

@@ -1,0 +1,2026 @@
+{
+  "generatedBy": "experiments/fusion/run_experiment.mjs",
+  "metricDt": 0.005,
+  "annotation": "coarticulation_closure.json",
+  "strategies": [
+    "envelope",
+    "center",
+    "window"
+  ],
+  "scenarios": {
+    "clean": {
+      "label": "原始手工标注（可靠时间）",
+      "byStrategy": {
+        "envelope": {
+          "stats": {
+            "phonemeCount": 27,
+            "eventCount": 27,
+            "closureEvents": 6,
+            "closureEnforcedCount": 5,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 0
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 35.847559,
+            "maxStep": 0.165981,
+            "rmsVelocity": 5.096566,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 8.832493,
+                "maxStep": 0.117794
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.089133
+              },
+              "lipSpread": {
+                "tv": 4.506961,
+                "maxStep": 0.07975
+              },
+              "lipClose": {
+                "tv": 10.252401,
+                "maxStep": 0.165981
+              },
+              "tongueFront": {
+                "tv": 6.256712,
+                "maxStep": 0.084441
+              },
+              "tongueBack": {
+                "tv": 4.098993,
+                "maxStep": 0.075059
+              }
+            }
+          },
+          "closure": {
+            "count": 6,
+            "meanAbsLead": 0.075833,
+            "maxAbsLead": 0.135,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.125,
+              "peakTime": 0.07,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.046857
+            },
+            {
+              "phoneme": "p",
+              "releaseTime": 0.205,
+              "peakTime": 0.07,
+              "peakLipClose": 1,
+              "leadSec": 0.135,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.049248
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.485,
+              "peakTime": 0.43,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.078186
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.72,
+              "peakTime": 0.665,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.061131
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.235,
+              "peakTime": 1.18,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.020652
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.82,
+              "peakTime": 1.72,
+              "peakLipClose": 1,
+              "leadSec": 0.1,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.0675
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.161731,
+              "to": 0.6,
+              "midpoint": 0.380865,
+              "crossoverTime": 1.42,
+              "offsetSec": 0.02
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.075,
+              "to": 0.425,
+              "midpoint": 0.25,
+              "crossoverTime": 1.5,
+              "offsetSec": 0.03
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.19,
+              "from": 0.313042,
+              "to": 0,
+              "midpoint": 0.156521,
+              "crossoverTime": 1.225,
+              "offsetSec": -0.035
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.545745,
+              "midpoint": 0.272872,
+              "crossoverTime": 1.22,
+              "offsetSec": 0.015
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.012143
+        },
+        "center": {
+          "stats": {
+            "phonemeCount": 27,
+            "eventCount": 27,
+            "closureEvents": 6,
+            "closureEnforcedCount": 5,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 0
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 46.169219,
+            "maxStep": 0.18294,
+            "rmsVelocity": 6.002488,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 12.932068,
+                "maxStep": 0.18294
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.0974
+              },
+              "lipSpread": {
+                "tv": 6.212043,
+                "maxStep": 0.083955
+              },
+              "lipClose": {
+                "tv": 11.556794,
+                "maxStep": 0.142101
+              },
+              "tongueFront": {
+                "tv": 8.647904,
+                "maxStep": 0.088894
+              },
+              "tongueBack": {
+                "tv": 4.920409,
+                "maxStep": 0.082021
+              }
+            }
+          },
+          "closure": {
+            "count": 6,
+            "meanAbsLead": 0.036667,
+            "maxAbsLead": 0.095,
+            "meanPeakLipClose": 0.996108
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.125,
+              "peakTime": 0.11,
+              "peakLipClose": 0.993413,
+              "leadSec": 0.015,
+              "lipCloseAtRelease": 0.856927,
+              "jawOpenAtRelease": 0.100362
+            },
+            {
+              "phoneme": "p",
+              "releaseTime": 0.205,
+              "peakTime": 0.11,
+              "peakLipClose": 0.993413,
+              "leadSec": 0.095,
+              "lipCloseAtRelease": 0.856927,
+              "jawOpenAtRelease": 0.051085
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.485,
+              "peakTime": 0.47,
+              "peakLipClose": 0.994493,
+              "leadSec": 0.015,
+              "lipCloseAtRelease": 0.778499,
+              "jawOpenAtRelease": 0.110865
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.72,
+              "peakTime": 0.7,
+              "peakLipClose": 1,
+              "leadSec": 0.02,
+              "lipCloseAtRelease": 0.740741,
+              "jawOpenAtRelease": 0.142026
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.235,
+              "peakTime": 1.21,
+              "peakLipClose": 0.995328,
+              "leadSec": 0.025,
+              "lipCloseAtRelease": 0.704512,
+              "jawOpenAtRelease": 0.036278
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.82,
+              "peakTime": 1.77,
+              "peakLipClose": 1,
+              "leadSec": 0.05,
+              "lipCloseAtRelease": 0.41701,
+              "jawOpenAtRelease": 0.254386
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.130638,
+              "to": 0.6,
+              "midpoint": 0.365319,
+              "crossoverTime": 1.435,
+              "offsetSec": 0.005
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.078344,
+              "to": 0.44395,
+              "midpoint": 0.261147,
+              "crossoverTime": 1.515,
+              "offsetSec": 0.015
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.19,
+              "from": 0.162743,
+              "to": 0,
+              "midpoint": 0.081371,
+              "crossoverTime": 1.215,
+              "offsetSec": -0.025
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.733807,
+              "midpoint": 0.366903,
+              "crossoverTime": 1.24,
+              "offsetSec": -0.005
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.0075
+        },
+        "window": {
+          "stats": {
+            "phonemeCount": 27,
+            "eventCount": 27,
+            "closureEvents": 6,
+            "closureEnforcedCount": 5,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 0
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 46.053433,
+            "maxStep": 0.34375,
+            "rmsVelocity": 8.2129,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 12.781887,
+                "maxStep": 0.33
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.188288
+              },
+              "lipSpread": {
+                "tv": 6.477038,
+                "maxStep": 0.168468
+              },
+              "lipClose": {
+                "tv": 11,
+                "maxStep": 0.34375
+              },
+              "tongueFront": {
+                "tv": 8.972077,
+                "maxStep": 0.178378
+              },
+              "tongueBack": {
+                "tv": 4.922431,
+                "maxStep": 0.158559
+              }
+            }
+          },
+          "closure": {
+            "count": 6,
+            "meanAbsLead": 0.075833,
+            "maxAbsLead": 0.135,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.125,
+              "peakTime": 0.07,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.065518
+            },
+            {
+              "phoneme": "p",
+              "releaseTime": 0.205,
+              "peakTime": 0.07,
+              "peakLipClose": 1,
+              "leadSec": 0.135,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.026518
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.485,
+              "peakTime": 0.43,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.0675
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.72,
+              "peakTime": 0.665,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.0675
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.235,
+              "peakTime": 1.18,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.01875
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.82,
+              "peakTime": 1.72,
+              "peakLipClose": 1,
+              "leadSec": 0.1,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.0675
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.15234,
+              "to": 0.6,
+              "midpoint": 0.37617,
+              "crossoverTime": 1.435,
+              "offsetSec": 0.005
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.075,
+              "to": 0.425,
+              "midpoint": 0.25,
+              "crossoverTime": 1.52,
+              "offsetSec": 0.01
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.821622,
+              "midpoint": 0.410811,
+              "crossoverTime": 1.23,
+              "offsetSec": 0.005
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.007857
+        }
+      }
+    },
+    "jitter_15ms": {
+      "label": "边界抖动 ±15ms",
+      "byStrategy": {
+        "envelope": {
+          "stats": {
+            "phonemeCount": 27,
+            "eventCount": 27,
+            "closureEvents": 6,
+            "closureEnforcedCount": 5,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 25
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 37.237606,
+            "maxStep": 0.165924,
+            "rmsVelocity": 5.241763,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 9.452913,
+                "maxStep": 0.119865
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.089243
+              },
+              "lipSpread": {
+                "tv": 4.994785,
+                "maxStep": 0.079547
+              },
+              "lipClose": {
+                "tv": 10.18932,
+                "maxStep": 0.165924
+              },
+              "tongueFront": {
+                "tv": 6.751708,
+                "maxStep": 0.084227
+              },
+              "tongueBack": {
+                "tv": 3.94888,
+                "maxStep": 0.075152
+              }
+            }
+          },
+          "closure": {
+            "count": 6,
+            "meanAbsLead": 0.070157,
+            "maxAbsLead": 0.128554,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.116677,
+              "peakTime": 0.065,
+              "peakLipClose": 1,
+              "leadSec": 0.051677,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "p",
+              "releaseTime": 0.193554,
+              "peakTime": 0.065,
+              "peakLipClose": 1,
+              "leadSec": 0.128554,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.472723,
+              "peakTime": 0.42,
+              "peakLipClose": 1,
+              "leadSec": 0.052723,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.710415,
+              "peakTime": 0.66,
+              "peakLipClose": 1,
+              "leadSec": 0.050415,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.240892,
+              "peakTime": 1.19,
+              "peakLipClose": 1,
+              "leadSec": 0.050892,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.816682,
+              "peakTime": 1.73,
+              "peakLipClose": 1,
+              "leadSec": 0.086682,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.165913,
+              "to": 0.590082,
+              "midpoint": 0.377998,
+              "crossoverTime": 1.42,
+              "offsetSec": 0.02
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.07507,
+              "to": 0.42347,
+              "midpoint": 0.24927,
+              "crossoverTime": 1.5,
+              "offsetSec": 0.03
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.19,
+              "from": 0.16927,
+              "to": 0,
+              "midpoint": 0.084635,
+              "crossoverTime": 1.23,
+              "offsetSec": -0.04
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.74925,
+              "midpoint": 0.374625,
+              "crossoverTime": 1.23,
+              "offsetSec": 0.005
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.011615
+        },
+        "center": {
+          "stats": {
+            "phonemeCount": 27,
+            "eventCount": 27,
+            "closureEvents": 6,
+            "closureEnforcedCount": 5,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 25
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 46.723634,
+            "maxStep": 0.192991,
+            "rmsVelocity": 6.339121,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 13.0222,
+                "maxStep": 0.192991
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.107708
+              },
+              "lipSpread": {
+                "tv": 6.470702,
+                "maxStep": 0.116897
+              },
+              "lipClose": {
+                "tv": 11.595817,
+                "maxStep": 0.149377
+              },
+              "tongueFront": {
+                "tv": 9.021666,
+                "maxStep": 0.123773
+              },
+              "tongueBack": {
+                "tv": 4.71325,
+                "maxStep": 0.090701
+              }
+            }
+          },
+          "closure": {
+            "count": 6,
+            "meanAbsLead": 0.029324,
+            "maxAbsLead": 0.083554,
+            "meanPeakLipClose": 0.998398
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.116677,
+              "peakTime": 0.11,
+              "peakLipClose": 0.999699,
+              "leadSec": 0.006677,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "p",
+              "releaseTime": 0.193554,
+              "peakTime": 0.11,
+              "peakLipClose": 0.999699,
+              "leadSec": 0.083554,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.472723,
+              "peakTime": 0.465,
+              "peakLipClose": 0.996275,
+              "leadSec": 0.007723,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.710415,
+              "peakTime": 0.7,
+              "peakLipClose": 0.998696,
+              "leadSec": 0.010415,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.240892,
+              "peakTime": 1.215,
+              "peakLipClose": 0.997856,
+              "leadSec": 0.025892,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.816682,
+              "peakTime": 1.775,
+              "peakLipClose": 0.998165,
+              "leadSec": 0.041682,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.15897,
+              "to": 0.527397,
+              "midpoint": 0.343184,
+              "crossoverTime": 1.43,
+              "offsetSec": 0.01
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.079807,
+              "to": 0.418821,
+              "midpoint": 0.249314,
+              "crossoverTime": 1.51,
+              "offsetSec": 0.02
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.897234,
+              "midpoint": 0.448617,
+              "crossoverTime": 1.25,
+              "offsetSec": -0.015
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.007329
+        },
+        "window": {
+          "stats": {
+            "phonemeCount": 27,
+            "eventCount": 27,
+            "closureEvents": 6,
+            "closureEnforcedCount": 5,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 25
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 45.599201,
+            "maxStep": 0.367002,
+            "rmsVelocity": 8.435628,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 12.5387,
+                "maxStep": 0.327296
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.194471
+              },
+              "lipSpread": {
+                "tv": 6.62311,
+                "maxStep": 0.239221
+              },
+              "lipClose": {
+                "tv": 10.784582,
+                "maxStep": 0.367002
+              },
+              "tongueFront": {
+                "tv": 9.252101,
+                "maxStep": 0.253293
+              },
+              "tongueBack": {
+                "tv": 4.500708,
+                "maxStep": 0.163765
+              }
+            }
+          },
+          "closure": {
+            "count": 6,
+            "meanAbsLead": 0.070157,
+            "maxAbsLead": 0.128554,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.116677,
+              "peakTime": 0.065,
+              "peakLipClose": 1,
+              "leadSec": 0.051677,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "p",
+              "releaseTime": 0.193554,
+              "peakTime": 0.065,
+              "peakLipClose": 1,
+              "leadSec": 0.128554,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.472723,
+              "peakTime": 0.42,
+              "peakLipClose": 1,
+              "leadSec": 0.052723,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.710415,
+              "peakTime": 0.66,
+              "peakLipClose": 1,
+              "leadSec": 0.050415,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.240892,
+              "peakTime": 1.19,
+              "peakLipClose": 1,
+              "leadSec": 0.050892,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.816682,
+              "peakTime": 1.73,
+              "peakLipClose": 1,
+              "leadSec": 0.086682,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.169835,
+              "to": 0.561653,
+              "midpoint": 0.365744,
+              "crossoverTime": 1.43,
+              "offsetSec": 0.01
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.075276,
+              "to": 0.438724,
+              "midpoint": 0.257,
+              "crossoverTime": 1.515,
+              "offsetSec": 0.015
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.95,
+              "midpoint": 0.475,
+              "crossoverTime": 1.245,
+              "offsetSec": -0.01
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.006258
+        }
+      }
+    },
+    "jitter_30ms": {
+      "label": "边界抖动 ±30ms",
+      "byStrategy": {
+        "envelope": {
+          "stats": {
+            "phonemeCount": 25,
+            "eventCount": 25,
+            "closureEvents": 4,
+            "closureEnforcedCount": 2,
+            "longPauseCount": 0,
+            "errorCount": 2,
+            "warnCount": 23
+          },
+          "issues": [
+            "zero_after_overlap",
+            "zero_after_overlap"
+          ],
+          "continuity": {
+            "totalVariation": 34.445586,
+            "maxStep": 0.165575,
+            "rmsVelocity": 4.932978,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 9.412913,
+                "maxStep": 0.137612
+              },
+              "lipRound": {
+                "tv": 1.588473,
+                "maxStep": 0.088715
+              },
+              "lipSpread": {
+                "tv": 5.167484,
+                "maxStep": 0.101443
+              },
+              "lipClose": {
+                "tv": 8,
+                "maxStep": 0.165575
+              },
+              "tongueFront": {
+                "tv": 6.588442,
+                "maxStep": 0.107411
+              },
+              "tongueBack": {
+                "tv": 3.688274,
+                "maxStep": 0.074708
+              }
+            }
+          },
+          "closure": {
+            "count": 4,
+            "meanAbsLead": 0.071474,
+            "maxAbsLead": 0.119781,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.501645,
+              "peakTime": 0.45,
+              "peakLipClose": 1,
+              "leadSec": 0.051645,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.71889,
+              "peakTime": 0.665,
+              "peakLipClose": 1,
+              "leadSec": 0.05389,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.260581,
+              "peakTime": 1.2,
+              "peakLipClose": 1,
+              "leadSec": 0.060581,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.849781,
+              "peakTime": 1.73,
+              "peakLipClose": 1,
+              "leadSec": 0.119781,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.164292,
+              "to": 0.63223,
+              "midpoint": 0.398261,
+              "crossoverTime": 1.425,
+              "offsetSec": 0.015
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.078588,
+              "to": 0.503589,
+              "midpoint": 0.291088,
+              "crossoverTime": 1.515,
+              "offsetSec": 0.015
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.19,
+              "from": 0.074619,
+              "to": 0,
+              "midpoint": 0.037309,
+              "crossoverTime": 1.22,
+              "offsetSec": -0.03
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.605566,
+              "midpoint": 0.302783,
+              "crossoverTime": 1.24,
+              "offsetSec": -0.005
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.011663
+        },
+        "center": {
+          "stats": {
+            "phonemeCount": 25,
+            "eventCount": 25,
+            "closureEvents": 4,
+            "closureEnforcedCount": 2,
+            "longPauseCount": 0,
+            "errorCount": 2,
+            "warnCount": 23
+          },
+          "issues": [
+            "zero_after_overlap",
+            "zero_after_overlap"
+          ],
+          "continuity": {
+            "totalVariation": 42.152742,
+            "maxStep": 0.249352,
+            "rmsVelocity": 5.819276,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 12.511081,
+                "maxStep": 0.249352
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.089668
+              },
+              "lipSpread": {
+                "tv": 6.393479,
+                "maxStep": 0.205629
+              },
+              "lipClose": {
+                "tv": 7.994655,
+                "maxStep": 0.148011
+              },
+              "tongueFront": {
+                "tv": 8.58818,
+                "maxStep": 0.217725
+              },
+              "tongueBack": {
+                "tv": 4.765347,
+                "maxStep": 0.07551
+              }
+            }
+          },
+          "closure": {
+            "count": 4,
+            "meanAbsLead": 0.030224,
+            "maxAbsLead": 0.059781,
+            "meanPeakLipClose": 0.999332
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.501645,
+              "peakTime": 0.48,
+              "peakLipClose": 0.999204,
+              "leadSec": 0.021645,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.71889,
+              "peakTime": 0.71,
+              "peakLipClose": 1,
+              "leadSec": 0.00889,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.260581,
+              "peakTime": 1.23,
+              "peakLipClose": 0.998647,
+              "leadSec": 0.030581,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.849781,
+              "peakTime": 1.79,
+              "peakLipClose": 0.999476,
+              "leadSec": 0.059781,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.149749,
+              "to": 0.682745,
+              "midpoint": 0.416247,
+              "crossoverTime": 1.435,
+              "offsetSec": 0.005
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.087418,
+              "to": 0.534638,
+              "midpoint": 0.311028,
+              "crossoverTime": 1.525,
+              "offsetSec": 0.005
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.808119,
+              "midpoint": 0.404059,
+              "crossoverTime": 1.26,
+              "offsetSec": -0.025
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.006663
+        },
+        "window": {
+          "stats": {
+            "phonemeCount": 25,
+            "eventCount": 25,
+            "closureEvents": 4,
+            "closureEnforcedCount": 2,
+            "longPauseCount": 0,
+            "errorCount": 2,
+            "warnCount": 23
+          },
+          "issues": [
+            "zero_after_overlap",
+            "zero_after_overlap"
+          ],
+          "continuity": {
+            "totalVariation": 41.978825,
+            "maxStep": 0.543751,
+            "rmsVelocity": 8.313578,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 12.445257,
+                "maxStep": 0.340364
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.192271
+              },
+              "lipSpread": {
+                "tv": 6.43332,
+                "maxStep": 0.513543
+              },
+              "lipClose": {
+                "tv": 8,
+                "maxStep": 0.367183
+              },
+              "tongueFront": {
+                "tv": 8.569612,
+                "maxStep": 0.543751
+              },
+              "tongueBack": {
+                "tv": 4.630636,
+                "maxStep": 0.161912
+              }
+            }
+          },
+          "closure": {
+            "count": 4,
+            "meanAbsLead": 0.071474,
+            "maxAbsLead": 0.119781,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.501645,
+              "peakTime": 0.45,
+              "peakLipClose": 1,
+              "leadSec": 0.051645,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.71889,
+              "peakTime": 0.665,
+              "peakLipClose": 1,
+              "leadSec": 0.05389,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.260581,
+              "peakTime": 1.2,
+              "peakLipClose": 1,
+              "leadSec": 0.060581,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.849781,
+              "peakTime": 1.73,
+              "peakLipClose": 1,
+              "leadSec": 0.119781,
+              "lipCloseAtRelease": null,
+              "jawOpenAtRelease": null
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.162257,
+              "to": 0.760712,
+              "midpoint": 0.461484,
+              "crossoverTime": 1.435,
+              "offsetSec": 0.005
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.088908,
+              "to": 0.85,
+              "midpoint": 0.469454,
+              "crossoverTime": 1.54,
+              "offsetSec": -0.01
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.95,
+              "midpoint": 0.475,
+              "crossoverTime": 1.265,
+              "offsetSec": -0.03
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.007735
+        }
+      }
+    },
+    "quantized_20ms": {
+      "label": "边界量化到 20ms 帧网格",
+      "byStrategy": {
+        "envelope": {
+          "stats": {
+            "phonemeCount": 27,
+            "eventCount": 27,
+            "closureEvents": 6,
+            "closureEnforcedCount": 4,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 0
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 35.702696,
+            "maxStep": 0.165981,
+            "rmsVelocity": 5.100129,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 8.967319,
+                "maxStep": 0.117794
+              },
+              "lipRound": {
+                "tv": 1.863337,
+                "maxStep": 0.089133
+              },
+              "lipSpread": {
+                "tv": 4.368285,
+                "maxStep": 0.07975
+              },
+              "lipClose": {
+                "tv": 10.252401,
+                "maxStep": 0.165981
+              },
+              "tongueFront": {
+                "tv": 6.13945,
+                "maxStep": 0.084441
+              },
+              "tongueBack": {
+                "tv": 4.111905,
+                "maxStep": 0.075059
+              }
+            }
+          },
+          "closure": {
+            "count": 6,
+            "meanAbsLead": 0.076667,
+            "maxAbsLead": 0.135,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.12,
+              "peakTime": 0.065,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.045567
+            },
+            {
+              "phoneme": "p",
+              "releaseTime": 0.2,
+              "peakTime": 0.065,
+              "peakLipClose": 1,
+              "leadSec": 0.135,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.052905
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.48,
+              "peakTime": 0.425,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.085743
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.72,
+              "peakTime": 0.665,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.061131
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.24,
+              "peakTime": 1.18,
+              "peakLipClose": 1,
+              "leadSec": 0.06,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.01875
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.82,
+              "peakTime": 1.72,
+              "peakLipClose": 1,
+              "leadSec": 0.1,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.0675
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.161731,
+              "to": 0.620205,
+              "midpoint": 0.390968,
+              "crossoverTime": 1.425,
+              "offsetSec": 0.015
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.075,
+              "to": 0.425,
+              "midpoint": 0.25,
+              "crossoverTime": 1.51,
+              "offsetSec": 0.02
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.19,
+              "from": 0.313042,
+              "to": 0,
+              "midpoint": 0.156521,
+              "crossoverTime": 1.22,
+              "offsetSec": -0.03
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.545745,
+              "midpoint": 0.272872,
+              "crossoverTime": 1.22,
+              "offsetSec": 0.015
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.011429
+        },
+        "center": {
+          "stats": {
+            "phonemeCount": 27,
+            "eventCount": 27,
+            "closureEvents": 6,
+            "closureEnforcedCount": 4,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 0
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 46.385505,
+            "maxStep": 0.17803,
+            "rmsVelocity": 6.09325,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 13.046348,
+                "maxStep": 0.17803
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.09313
+              },
+              "lipSpread": {
+                "tv": 6.160703,
+                "maxStep": 0.083209
+              },
+              "lipClose": {
+                "tv": 11.792,
+                "maxStep": 0.148
+              },
+              "tongueFront": {
+                "tv": 8.584495,
+                "maxStep": 0.088104
+              },
+              "tongueBack": {
+                "tv": 4.90196,
+                "maxStep": 0.078425
+              }
+            }
+          },
+          "closure": {
+            "count": 6,
+            "meanAbsLead": 0.035,
+            "maxAbsLead": 0.09,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.12,
+              "peakTime": 0.11,
+              "peakLipClose": 1,
+              "leadSec": 0.01,
+              "lipCloseAtRelease": 0.896,
+              "jawOpenAtRelease": 0.081369
+            },
+            {
+              "phoneme": "p",
+              "releaseTime": 0.2,
+              "peakTime": 0.11,
+              "peakLipClose": 1,
+              "leadSec": 0.09,
+              "lipCloseAtRelease": 0.896,
+              "jawOpenAtRelease": 0.050514
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.48,
+              "peakTime": 0.47,
+              "peakLipClose": 1,
+              "leadSec": 0.01,
+              "lipCloseAtRelease": 0.896,
+              "jawOpenAtRelease": 0.080983
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.72,
+              "peakTime": 0.7,
+              "peakLipClose": 1,
+              "leadSec": 0.02,
+              "lipCloseAtRelease": 0.740741,
+              "jawOpenAtRelease": 0.134328
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.24,
+              "peakTime": 1.21,
+              "peakLipClose": 1,
+              "leadSec": 0.03,
+              "lipCloseAtRelease": 0.606414,
+              "jawOpenAtRelease": 0.049359
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.82,
+              "peakTime": 1.77,
+              "peakLipClose": 1,
+              "leadSec": 0.05,
+              "lipCloseAtRelease": 0.41701,
+              "jawOpenAtRelease": 0.243335
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.132329,
+              "to": 0.688921,
+              "midpoint": 0.410625,
+              "crossoverTime": 1.44,
+              "offsetSec": 0
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.075,
+              "to": 0.463463,
+              "midpoint": 0.269231,
+              "crossoverTime": 1.52,
+              "offsetSec": 0.01
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.19,
+              "from": 0.179462,
+              "to": 0,
+              "midpoint": 0.089731,
+              "crossoverTime": 1.21,
+              "offsetSec": -0.02
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.739823,
+              "midpoint": 0.369912,
+              "crossoverTime": 1.24,
+              "offsetSec": -0.005
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.008214
+        },
+        "window": {
+          "stats": {
+            "phonemeCount": 27,
+            "eventCount": 27,
+            "closureEvents": 6,
+            "closureEnforcedCount": 4,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 0
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 45.764952,
+            "maxStep": 0.34375,
+            "rmsVelocity": 8.203899,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 12.718413,
+                "maxStep": 0.33
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.188288
+              },
+              "lipSpread": {
+                "tv": 6.42022,
+                "maxStep": 0.168468
+              },
+              "lipClose": {
+                "tv": 11,
+                "maxStep": 0.34375
+              },
+              "tongueFront": {
+                "tv": 8.871954,
+                "maxStep": 0.178378
+              },
+              "tongueBack": {
+                "tv": 4.854366,
+                "maxStep": 0.158559
+              }
+            }
+          },
+          "closure": {
+            "count": 6,
+            "meanAbsLead": 0.076667,
+            "maxAbsLead": 0.135,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 0.12,
+              "peakTime": 0.065,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.061131
+            },
+            {
+              "phoneme": "p",
+              "releaseTime": 0.2,
+              "peakTime": 0.065,
+              "peakLipClose": 1,
+              "leadSec": 0.135,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.03541
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.48,
+              "peakTime": 0.425,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.075246
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 0.72,
+              "peakTime": 0.665,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.0675
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.24,
+              "peakTime": 1.18,
+              "peakLipClose": 1,
+              "leadSec": 0.06,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.01875
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.82,
+              "peakTime": 1.72,
+              "peakLipClose": 1,
+              "leadSec": 0.1,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.0675
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.15234,
+              "to": 0.7,
+              "midpoint": 0.42617,
+              "crossoverTime": 1.435,
+              "offsetSec": 0.005
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.075,
+              "to": 0.425,
+              "midpoint": 0.25,
+              "crossoverTime": 1.53,
+              "offsetSec": 0
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.821622,
+              "midpoint": 0.410811,
+              "crossoverTime": 1.235,
+              "offsetSec": 0
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.007857
+        }
+      }
+    },
+    "dropped_40ms": {
+      "label": "短于 40ms 的音素被对齐器丢弃",
+      "byStrategy": {
+        "envelope": {
+          "stats": {
+            "phonemeCount": 21,
+            "eventCount": 21,
+            "closureEvents": 2,
+            "closureEnforcedCount": 1,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 6
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 29.129154,
+            "maxStep": 0.165981,
+            "rmsVelocity": 4.201664,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 8.880895,
+                "maxStep": 0.117794
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.089133
+              },
+              "lipSpread": {
+                "tv": 4.783843,
+                "maxStep": 0.07975
+              },
+              "lipClose": {
+                "tv": 4,
+                "maxStep": 0.165981
+              },
+              "tongueFront": {
+                "tv": 6.016788,
+                "maxStep": 0.084441
+              },
+              "tongueBack": {
+                "tv": 3.547628,
+                "maxStep": 0.075059
+              }
+            }
+          },
+          "closure": {
+            "count": 2,
+            "meanAbsLead": 0.0775,
+            "maxAbsLead": 0.1,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 1.235,
+              "peakTime": 1.18,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.020652
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.82,
+              "peakTime": 1.72,
+              "peakLipClose": 1,
+              "leadSec": 0.1,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.0675
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.161731,
+              "to": 0.6,
+              "midpoint": 0.380865,
+              "crossoverTime": 1.42,
+              "offsetSec": 0.02
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.075,
+              "to": 0.425,
+              "midpoint": 0.25,
+              "crossoverTime": 1.5,
+              "offsetSec": 0.03
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.19,
+              "from": 0.313042,
+              "to": 0,
+              "midpoint": 0.156521,
+              "crossoverTime": 1.225,
+              "offsetSec": -0.035
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.545745,
+              "midpoint": 0.272872,
+              "crossoverTime": 1.22,
+              "offsetSec": 0.015
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.006667
+        },
+        "center": {
+          "stats": {
+            "phonemeCount": 21,
+            "eventCount": 21,
+            "closureEvents": 2,
+            "closureEnforcedCount": 1,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 6
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 31.939681,
+            "maxStep": 0.18545,
+            "rmsVelocity": 4.812709,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 9.269771,
+                "maxStep": 0.18545
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.0974
+              },
+              "lipSpread": {
+                "tv": 5.955158,
+                "maxStep": 0.103131
+              },
+              "lipClose": {
+                "tv": 3.990656,
+                "maxStep": 0.119552
+              },
+              "tongueFront": {
+                "tv": 7.224095,
+                "maxStep": 0.088894
+              },
+              "tongueBack": {
+                "tv": 3.6,
+                "maxStep": 0.082021
+              }
+            }
+          },
+          "closure": {
+            "count": 2,
+            "meanAbsLead": 0.0375,
+            "maxAbsLead": 0.05,
+            "meanPeakLipClose": 0.997664
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 1.235,
+              "peakTime": 1.21,
+              "peakLipClose": 0.995328,
+              "leadSec": 0.025,
+              "lipCloseAtRelease": 0.704512,
+              "jawOpenAtRelease": 0.036278
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.82,
+              "peakTime": 1.77,
+              "peakLipClose": 1,
+              "leadSec": 0.05,
+              "lipCloseAtRelease": 0.41701,
+              "jawOpenAtRelease": 0.254386
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.130638,
+              "to": 0.6,
+              "midpoint": 0.365319,
+              "crossoverTime": 1.435,
+              "offsetSec": 0.005
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.078344,
+              "to": 0.44395,
+              "midpoint": 0.261147,
+              "crossoverTime": 1.515,
+              "offsetSec": 0.015
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.19,
+              "from": 0.162743,
+              "to": 0,
+              "midpoint": 0.081371,
+              "crossoverTime": 1.215,
+              "offsetSec": -0.025
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.733807,
+              "midpoint": 0.366903,
+              "crossoverTime": 1.24,
+              "offsetSec": -0.005
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.0025
+        },
+        "window": {
+          "stats": {
+            "phonemeCount": 21,
+            "eventCount": 21,
+            "closureEvents": 2,
+            "closureEnforcedCount": 1,
+            "longPauseCount": 0,
+            "errorCount": 0,
+            "warnCount": 6
+          },
+          "issues": [],
+          "continuity": {
+            "totalVariation": 32.08028,
+            "maxStep": 0.556281,
+            "rmsVelocity": 6.818252,
+            "perChannel": {
+              "jawOpen": {
+                "tv": 9.293793,
+                "maxStep": 0.556281
+              },
+              "lipRound": {
+                "tv": 1.9,
+                "maxStep": 0.188288
+              },
+              "lipSpread": {
+                "tv": 6,
+                "maxStep": 0.228065
+              },
+              "lipClose": {
+                "tv": 4,
+                "maxStep": 0.34375
+              },
+              "tongueFront": {
+                "tv": 7.286486,
+                "maxStep": 0.203518
+              },
+              "tongueBack": {
+                "tv": 3.6,
+                "maxStep": 0.158559
+              }
+            }
+          },
+          "closure": {
+            "count": 2,
+            "meanAbsLead": 0.0775,
+            "maxAbsLead": 0.1,
+            "meanPeakLipClose": 1
+          },
+          "closureRecords": [
+            {
+              "phoneme": "b",
+              "releaseTime": 1.235,
+              "peakTime": 1.18,
+              "peakLipClose": 1,
+              "leadSec": 0.055,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.01875
+            },
+            {
+              "phoneme": "b",
+              "releaseTime": 1.82,
+              "peakTime": 1.72,
+              "peakLipClose": 1,
+              "leadSec": 0.1,
+              "lipCloseAtRelease": 1,
+              "jawOpenAtRelease": 0.0675
+            }
+          ],
+          "crossovers": [
+            {
+              "channel": "jawOpen",
+              "boundaryTime": 1.44,
+              "from": 0.15234,
+              "to": 0.6,
+              "midpoint": 0.37617,
+              "crossoverTime": 1.435,
+              "offsetSec": 0.005
+            },
+            {
+              "channel": "lipSpread",
+              "boundaryTime": 1.53,
+              "from": 0.075,
+              "to": 0.425,
+              "midpoint": 0.25,
+              "crossoverTime": 1.52,
+              "offsetSec": 0.01
+            },
+            {
+              "channel": "lipRound",
+              "boundaryTime": 1.235,
+              "from": 0,
+              "to": 0.821622,
+              "midpoint": 0.410811,
+              "crossoverTime": 1.23,
+              "offsetSec": 0.005
+            }
+          ],
+          "meanVowelAttackDelaySec": 0.003333
+        }
+      }
+    }
+  },
+  "jitterRobustness": {
+    "seeds": [
+      11,
+      23,
+      37,
+      51,
+      68
+    ],
+    "jitterSec": 0.02,
+    "byStrategy": {
+      "envelope": {
+        "leadStdSec": [
+          0.000772,
+          0.010253,
+          0.001564,
+          0.000822,
+          0.000364,
+          0.0093
+        ],
+        "meanLeadStdSec": 0.003846
+      },
+      "center": {
+        "leadStdSec": [
+          0.041642,
+          0.049244,
+          0.007813,
+          0.00472,
+          0.004134,
+          0.003678
+        ],
+        "meanLeadStdSec": 0.018539
+      },
+      "window": {
+        "leadStdSec": [
+          0.000772,
+          0.010253,
+          0.001564,
+          0.000822,
+          0.000364,
+          0.0093
+        ],
+        "meanLeadStdSec": 0.003846
+      }
+    }
+  }
+}

@@ -5,16 +5,13 @@ import {
   ABSTRACT_CHANNELS, CHANNEL_RANGES, CHANNEL_COMBINE,
   VISEME_TARGETS, DEFAULT_PHONEME_MAP, DEFAULT_TRANSITION, SIL,
 } from './config.js';
+import {
+  FUSION_STRATEGIES, DEFAULT_FUSION_ID, normalizeFusion,
+} from './fusion/index.js';
+import { prepareCenterEvent, DEFAULT_CENTER_PARAMS } from './fusion/center.js';
+import { prepareWindowEvent, DEFAULT_WINDOW_PARAMS } from './fusion/window.js';
 
 const EPS = 1e-9;
-
-function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
-
-function smoothstep(edge0, edge1, x) {
-  if (edge1 === edge0) return x < edge0 ? 0 : 1;
-  const u = clamp01((x - edge0) / (edge1 - edge0));
-  return u * u * (3 - 2 * u);
-}
 
 function round6(x) { return Math.round(x * 1e6) / 1e6; }
 
@@ -191,7 +188,15 @@ export function buildTimeline(rawSegments, options = {}) {
     model = null,
     channelRanges = CHANNEL_RANGES,
     channelCombine = CHANNEL_COMBINE,
+    fusion = { strategy: DEFAULT_FUSION_ID, params: {} },
   } = options;
+  const fusionCfg = normalizeFusion(fusion);
+  const centerParams = { ...DEFAULT_CENTER_PARAMS, ...(fusionCfg.strategy === 'center' ? fusionCfg.params : {}) };
+  const windowParams = {
+    ...DEFAULT_WINDOW_PARAMS,
+    closureHold: transition.closureHold,
+    ...(fusionCfg.strategy === 'window' ? fusionCfg.params : {}),
+  };
 
   const { segments, issues: normIssues } = normalizeSegments(rawSegments);
   const issues = [...normIssues];
@@ -287,6 +292,24 @@ export function buildTimeline(rawSegments, options = {}) {
     });
   }
 
+  // 预计算两种可切换融合策略的事件几何（无论当前选哪种都算齐，切换策略无需重建时间线）
+  for (let i = 0; i < events.length; i++) {
+    const ev = events[i];
+    const segForFusion = { start: ev.start, end: ev.end };
+    const gapBefore = i === 0 ? Infinity : ev.start - events[i - 1].end;
+    const gapAfter = i === events.length - 1 ? Infinity : events[i + 1].start - ev.end;
+    const c = prepareCenterEvent(segForFusion, centerParams);
+    ev.center = c.center;
+    ev.radius = c.radius;
+    const w = prepareWindowEvent(segForFusion, gapBefore, gapAfter, windowParams, ev.closure);
+    ev.lead = w.lead;
+    ev.lag = w.lag;
+    ev.winRiseStart = w.riseStart;
+    ev.winRiseEnd = w.riseEnd;
+    ev.winFallStart = w.fallStart;
+    ev.winFallEnd = w.fallEnd;
+  }
+
   const duration = segments.length ? segments[segments.length - 1].end : 0;
 
   return {
@@ -298,6 +321,7 @@ export function buildTimeline(rawSegments, options = {}) {
     modelResolution,
     channelRanges,
     channelCombine,
+    fusion: { strategy: fusionCfg.strategy, params: fusionCfg.params },
     stats: {
       phonemeCount: segments.length,
       eventCount: events.length,
@@ -310,55 +334,10 @@ export function buildTimeline(rawSegments, options = {}) {
   };
 }
 
-function eventWeight(ev, t) {
-  if (t < ev.riseStart - EPS || t > ev.fallEnd + EPS) return 0;
-  if (t < ev.riseEnd) return smoothstep(ev.riseStart, ev.riseEnd, t);
-  if (t <= ev.fallStart) return 1;
-  return 1 - smoothstep(ev.fallStart, ev.fallEnd, t);
-}
-
-// 抽象通道权重（无模型时的输出）
+// 抽象通道权重（无模型时的输出）。按 timeline.fusion.strategy 分派到可切换策略模块。
 export function sampleAbstract(timeline, t) {
-  const out = {};
-  const active = [];
-  let closurePressure = 0; // 当前时刻所有闭口事件的最大闭合强度
-  for (const ev of timeline.events) {
-    const w = eventWeight(ev, t);
-    if (w > EPS) {
-      active.push({ ev, w });
-      if (ev.closure) closurePressure = Math.max(closurePressure, w);
-    }
-  }
-  for (const ch of ABSTRACT_CHANNELS) {
-    const range = timeline.channelRanges[ch] || { min: 0, max: 1 };
-    let value;
-    if (active.length === 0) {
-      value = 0;
-    } else {
-      const mode = timeline.channelCombine[ch] || 'average';
-      if (mode === 'max') {
-        value = 0;
-        for (const { ev, w } of active) value = Math.max(value, w * (ev.target[ch] || 0));
-      } else if (mode === 'sum') {
-        value = 0;
-        for (const { ev, w } of active) value += w * (ev.target[ch] || 0);
-      } else {
-        let num = 0;
-        let den = 0;
-        for (const { ev, w } of active) {
-          num += w * (ev.target[ch] || 0);
-          den += w;
-        }
-        value = den > EPS ? num / den : 0;
-      }
-    }
-    // 闭口辅音对张嘴通道有硬性抑制：嘴唇闭合时不允许下颌保持张开姿态
-    if (ch === 'jawOpen' && closurePressure > 0) {
-      value *= (1 - 0.85 * closurePressure);
-    }
-    out[ch] = Math.min(range.max, Math.max(range.min, value));
-  }
-  return out;
+  const strategy = FUSION_STRATEGIES[timeline.fusion?.strategy] || FUSION_STRATEGIES[DEFAULT_FUSION_ID];
+  return strategy.sample(timeline, t);
 }
 
 // 绑定到模型实际 morph 名称
@@ -435,6 +414,7 @@ export function buildExportPayload(timeline, dt = 0.01) {
     generatedAtDeterministic: true,
     sampleStepSec: dt,
     duration: timeline.duration,
+    fusion: timeline.fusion,
     model: {
       id: timeline.modelResolution.report.modelId,
       bindings: timeline.modelResolution.bindings,
